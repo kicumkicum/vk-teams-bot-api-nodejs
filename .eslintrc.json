@@ -1,0 +1,56 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "commonjs": true,
+    "jest": false
+  },
+
+  "extends": ["next/core-web-vitals", "htmlacademy/es6", "plugin:react/recommended", "plugin:jest/recommended"],
+
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+
+  "plugins": ["react", "jest", "@typescript-eslint", "import-newlines"],
+
+  "rules": {
+    "react/prop-types": 0,
+    "react/react-in-jsx-scope": 0,
+    "max-nested-callbacks": ["warn", {"max": 4}],
+    "import/order": ["error", {
+      "alphabetize": {"order": "asc", "caseInsensitive": true},
+      "groups": ["builtin", "external", "parent", "sibling", "index"]
+    }],
+    "import-newlines/enforce": ["error", {
+      "items": 4,
+      "max-len": 200,
+      "forceSingleLine": true,
+      "semi": true
+    }],
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "always-multiline"
+    }],
+    "no-shadow": "off",
+    "prefer-const": "error",
+    "import/no-cycle": [2, { "ignoreExternal": false }],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/type-annotation-spacing": "error",
+    "jsx-a11y/alt-text": "error"
+  },
+
+  "settings": {
+    "react": {
+      "version": "17"
+    }
+  }
+}
