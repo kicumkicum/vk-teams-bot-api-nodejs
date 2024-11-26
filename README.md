@@ -1,6 +1,6 @@
 <img src="logo_bot.png" width="100" height="100">
 
-# VK Teams Bot API for Node.js **(unofficial)**
+# VK Teams Bot API for Node.js (unofficial)
 
 ### [<img src="logo_msg.png" width="16"> VK Teams API Specification](https://teams.vk.com/botapi/)
 
@@ -15,10 +15,10 @@
 
 Install using npm:
 ```bash
-npm install mailru-im-bot-unofficial
+npm install vk-teams-bot
 ```
 
 ## Project Features
 
 This is an unofficial version for node.js, as there is no official one. It is derived from the python version from the commit https://github.com/mail-ru-im/bot-python/commit/db4fd9318e116a1a1c45bff0f76fb6b9b27bb604
-and converted to node.js using ChatGPT
+and converted to node.js using ChatGPT.
