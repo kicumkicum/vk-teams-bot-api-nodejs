@@ -28,5 +28,15 @@
     "eslint-plugin-import-newlines": "1.4.0",
     "eslint-plugin-jest": "25.7.0",
     "typescript": "5.6.3"
-  }
+  },
+  "files": [
+    "src",
+    "LICENSE",
+    "logo_bot.png",
+    "logo_msg.png",
+    "package.json",
+    "package-lock.json",
+    "README.md",
+    "tsconfig.json"
+  ]
 }
