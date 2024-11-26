@@ -1,5 +1,5 @@
 {
-  "name": "vk-teams-bot",
+  "name": "vk-teams-bot-api",
   "version": "0.1.1",
   "description": "",
   "main": "index.js",
@@ -38,5 +38,9 @@
     "package-lock.json",
     "README.md",
     "tsconfig.json"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kicumkicum/vk-teams-bot-api-nodejs"
+  }
 }
