@@ -226,7 +226,10 @@ class Bot {
         });
 
         if (response.data?.events) {
-            this.lastEventId = Math.max(...response.data.events.map((e: { eventId: number }) => e.eventId));
+            const {events} = response.data;
+            if (events.length > 0) {
+                this.lastEventId = Math.max(...events.map((e: {eventId: number}) => e.eventId));
+            }
         }
 
         return response;
