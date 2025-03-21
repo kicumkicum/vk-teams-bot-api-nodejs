@@ -153,7 +153,7 @@ class Bot {
                 if (response.data?.events) {
                     console.log(`[Polling] Processing ${response.data.events.length} events`)
                     for (const event of response.data.events) {
-                        console.log(`[Event] Type: ${event.type}, Payload: ${event.payload}`)
+                        console.log(`[Event] Type: ${event.type}, Payload: ${JSON.stringify(event.payload)}`)
                         this.dispatcher.emit(event.type, event.payload); // Modify according to your event system
                     }
                 }
