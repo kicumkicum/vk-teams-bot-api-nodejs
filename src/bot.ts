@@ -144,17 +144,16 @@ class Bot {
         while (this.running) {
             try {
                 const response = await this.events_get();
-                // console.log(2222222, response)
-                console.log(2222222)
+                console.log('[Polling] Received server response')
 
                 if (response.data?.description === 'Invalid token') {
                     throw new InvalidToken(response.data);
                 }
 
                 if (response.data?.events) {
-                    console.log(222222, 333333333)
+                    console.log(`[Polling] Processing ${response.data.events.length} events`)
                     for (const event of response.data.events) {
-                        console.log(222222, 333333333, 1111111111, event.type, event.payload)
+                        console.log(`[Event] Type: ${event.type}, Payload:, event.payload`)
                         this.dispatcher.emit(event.type, event.payload); // Modify according to your event system
                     }
                 }
@@ -212,7 +211,7 @@ class Bot {
     }
 
     public async events_get(pollTimeS?: number, lastEventId?: number) {
-        console.log(3333333)
+        console.log('[Polling] Requesting new events')
         pollTimeS = pollTimeS || this.pollTimeS;
         lastEventId = lastEventId || this.lastEventId;
 
@@ -266,8 +265,8 @@ class Bot {
     }
 
     public message_handler(handler: Function) {
-        console.log(3232323, handler);
-        this.dispatcher.on('newMessage', (...args) => console.log(999) || handler(...args));
+        console.log('[Handler] Registering new message handler')
+        this.dispatcher.on('newMessage', (...args) => console.log('[Message] Received new message') || handler(...args));
     }
 
     public edit_msg_handler(handler: Function) {
