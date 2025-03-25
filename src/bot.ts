@@ -2,6 +2,8 @@ import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {Format, InlineKeyboardMarkup} from './types';
 import * as cgi from 'querystring';
 import * as logging from 'logging'; // Подключение библиотеки логирования
+import fetch from 'node-fetch';
+import FormData from 'form-data';
 import {EventType} from "./event";
 import {EventEmitter} from 'node:events';
 import Lock from 'async-lock';
@@ -320,22 +322,21 @@ class Bot {
         formData.append('token', this.token);
         formData.append('chatId', chatId);
         if (fileId) formData.append('fileId', fileId);
-        if (file) formData.append('file', file);
+        if (file) formData.append('file', file, { filename: 'file.jpg' }); // Укажи имя файла, если это Buffer или Stream
         if (caption) formData.append('caption', caption);
         if (replyMsgId) formData.append('replyMsgId', replyMsgId);
         if (forwardChatId) formData.append('forwardChatId', forwardChatId);
         if (forwardMsgId) formData.append('forwardMsgId', forwardMsgId);
-        formData.append('inlineKeyboardMarkup', keyboard_to_json(inlineKeyboardMarkup));
+        // formData.append('inlineKeyboardMarkup', keyboard_to_json(inlineKeyboardMarkup));
         if (parseMode) formData.append('parseMode', parseMode);
         if (format) formData.append('format', format_to_json(format));
 
-        const response = await this.httpSession.post(`${this.apiBaseUrl}/messages/sendFile`, formData, {
-            timeout: this.timeoutS * 1000,
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
+        const response = await fetch(`${this.apiBaseUrl}/messages/sendFile`, {
+            method: 'POST',
+            body: formData,
+            headers: formData.getHeaders(),
         });
-        return response;
+        return await response.json();
     }
 
     public async send_voice(chatId: string, fileId?: string, file?: any, replyMsgId?: string, forwardChatId?: string, forwardMsgId?: string) {
@@ -676,4 +677,3 @@ class InvalidToken extends Error {
 export { LoggingHTTPAdapter, BotLoggingHTTPAdapter, FileNotFoundException, SkipDuplicateMessageHandler, InvalidToken };
 
 export default Bot;
-
